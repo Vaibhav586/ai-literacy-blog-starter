@@ -1,0 +1,44 @@
+{
+  "name": "ai-literacy-blog-starter",
+  "version": "1.0.0",
+  "description": "A modern Next.js blog starter for AI literacy content",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@next/mdx": "^14.0.4",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "gray-matter": "^4.0.3",
+    "reading-time": "^1.5.0",
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4"
+  },
+  "keywords": [
+    "nextjs",
+    "blog",
+    "mdx",
+    "ai",
+    "literacy",
+    "education",
+    "tailwind"
+  ],
+  "author": "Vaibhav586",
+  "license": "MIT"
+}
