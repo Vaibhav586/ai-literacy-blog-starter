@@ -9,21 +9,11 @@ const roles = [
   { id: 'founder', name: 'Founder', icon: '💼' },
 ]
 
-const recommendations: Record<string, { title: string; slug: string }[]> = {
-  student: [
-    { title: 'AI Basics for Non-Technical People', slug: 'ai-basics' },
-    { title: 'AI Tools for Students', slug: 'ai-for-students' },
-  ],
-  marketer: [
-    { title: 'AI Basics for Non-Technical People', slug: 'ai-basics' },
-    { title: 'AI for Marketers', slug: 'ai-for-marketers' },
-  ],
-  hr: [
-    { title: 'AI Basics for Non-Technical People', slug: 'ai-basics' },
-  ],
-  founder: [
-    { title: 'AI Basics for Non-Technical People', slug: 'ai-basics' },
-  ],
+const recommendations: Record<string, string[]> = {
+  student: ['ai-basics', 'ai-for-students'],
+  marketer: ['ai-basics', 'ai-for-marketers'],
+  hr: ['ai-basics'],
+  founder: ['ai-basics'],
 }
 
 export default function RoleSwitcher() {
@@ -49,14 +39,12 @@ export default function RoleSwitcher() {
       </div>
       {selected && (
         <div className="bg-blue-50 p-6 rounded-lg">
-          <h3 className="font-bold mb-3">
-            Recommended for {roles.find(r => r.id === selected)?.name}:
-          </h3>
+          <h3 className="font-bold mb-3">Recommended for {roles.find(r => r.id === selected)?.name}:</h3>
           <ul className="space-y-2">
-            {recommendations[selected]?.map((post) => (
-              <li key={post.slug}>
-                <Link href={`/blog/${post.slug}`} className="text-blue-600 hover:underline">
-                  {post.title} →
+            {recommendations[selected]?.map((slug) => (
+              <li key={slug}>
+                <Link href={`/blog/${slug}`} className="text-blue-600 hover:underline">
+                  {slug.replace(/-/g, ' ').toUpperCase()}
                 </Link>
               </li>
             ))}

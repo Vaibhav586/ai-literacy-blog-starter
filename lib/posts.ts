@@ -1,27 +1,42 @@
-// Utility functions for loading MDX posts
-// This is a placeholder - you can expand this later
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 
-export interface Post {
-  slug: string
-  title: string
-  description: string
-  tags: string[]
-  difficulty: string
-  roles: string[]
-  publishedAt: string
+const postsDirectory = path.join(process.cwd(), 'content/blog')
+
+export function getAllPosts() {
+  const fileNames = fs.readdirSync(postsDirectory)
+  const allPostsData = fileNames
+    .filter((fileName) => fileName.endsWith('.mdx'))
+    .map((fileName) => {
+      const slug = fileName.replace(/\.mdx$/, '')
+      const fullPath = path.join(postsDirectory, fileName)
+      const fileContents = fs.readFileSync(fullPath, 'utf8')
+      const { data } = matter(fileContents)
+
+      return {
+        slug,
+        ...data,
+      }
+    })
+
+  return allPostsData.sort((a: any, b: any) => {
+    if (a.publishedAt < b.publishedAt) {
+      return 1
+    } else {
+      return -1
+    }
+  })
 }
 
-// Placeholder function - expand when you add real MDX files
-export function getAllPosts(): Post[] {
-  return [
-    {
-      slug: 'ai-basics',
-      title: 'AI Basics for Non-Technical People',
-      description: 'Understand what AI really is, in plain language',
-      tags: ['Basics', 'Non-technical'],
-      difficulty: 'Intro',
-      roles: ['Student', 'Marketer', 'HR', 'Founder'],
-      publishedAt: '2026-01-01'
-    }
-  ]
+export function getPostBySlug(slug: string) {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
+  return {
+    slug,
+    metadata: data,
+    content,
+  }
 }
