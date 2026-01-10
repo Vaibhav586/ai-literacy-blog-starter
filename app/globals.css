@@ -3,37 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 224, 224, 255;
+  --background-start-rgb: 5, 5, 16;
+  --background-end-rgb: 10, 10, 25;
+  --neon-cyan: #00f3ff;
+  --neon-purple: #bc13fe;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
-      transparent,
+      rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    );
+  min-height: 100vh;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+/* Neon Text */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(188, 19, 254, 0.5);
 }
 
 .prose {
-  @apply max-w-none;
+  @apply max-w-none text-gray-300;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-white font-bold tracking-tight;
 }
 
 .prose h2 {
-  @apply text-2xl font-bold mt-8 mb-4;
+  @apply text-2xl mt-8 mb-4 border-b border-gray-800 pb-2;
 }
 
 .prose p {
   @apply my-4 leading-7;
+}
+
+.prose a {
+  @apply text-[color:var(--neon-cyan)] hover:text-[color:var(--neon-purple)] transition-colors;
+}
+
+.prose code {
+  @apply text-[color:var(--neon-cyan)];
 }

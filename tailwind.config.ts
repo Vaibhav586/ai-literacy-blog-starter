@@ -8,10 +8,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'neon-cyan': 'var(--neon-cyan)',
+        'neon-purple': 'var(--neon-purple)',
+        'deep-space': 'rgb(var(--background-start-rgb))',
+      },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: 'none',
+            color: 'rgb(var(--foreground-rgb))',
+            a: {
+              color: 'var(--neon-cyan)',
+              '&:hover': {
+                color: 'var(--neon-purple)',
+              },
+            },
           },
         },
       },
